@@ -1,0 +1,7 @@
+.dialogsItems a{
+    text-decoration: none;
+}
+
+.dialogsItems a.activeLink {
+    color: red;
+}

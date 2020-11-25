@@ -1,0 +1,23 @@
+.imgTop {
+    width: 1000px;
+    height: 200px;
+    overflow: hidden;
+}
+
+.mainPro {
+    display: grid;
+    grid-template-columns: 2fr 10fr;
+    border-color: coral;
+    border-style: solid;
+    padding: 10px;
+}
+.mainPro .ava {
+    text-align: center;
+}
+.mainPro .ava img{
+    height: 100px;
+    width: 100px;
+}
+.mainPro .discr {
+    margin-top: 40px;
+}

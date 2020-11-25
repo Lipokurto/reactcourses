@@ -1,0 +1,9 @@
+.content {
+    grid-area: c;
+    background-color:rgba(52, 169, 236, 0.726);
+
+  }
+
+.posts {
+  padding: 10px;
+}
