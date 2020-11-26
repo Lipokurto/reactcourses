@@ -2,8 +2,9 @@
     display: grid;
     grid-template-columns: 2fr 10fr;
     padding: 10px;
-    background-color: burlywood;
+    background-color: lightcoral;
 }
-
-
-
+.dialogsItems {
+    margin: auto;
+    margin-left: auto;
+}

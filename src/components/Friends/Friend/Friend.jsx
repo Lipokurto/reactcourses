@@ -2,11 +2,10 @@ import cla from './Friend.module.css'
 
 const Friend =(props)=> {
     return (
-        <div>
-        <img alt='' src='https://f1.upet.com/A_r2u6uZhnxA_x.jpg'></img>
-        <div className={cla.item}>FriendName</div>
+        <div className={cla.item}>
+        <img alt='' src={props.src}></img>
+    <div className={cla.item}>{props.name}</div>
         </div>
-        
     );
 }
 export default Friend;

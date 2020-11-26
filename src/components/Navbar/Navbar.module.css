@@ -12,3 +12,11 @@
 .item a.activeLink {
   color: gold;
 }
+.item h1 {
+  font-size: 20px;
+  color: white;
+}
+.nav .container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}

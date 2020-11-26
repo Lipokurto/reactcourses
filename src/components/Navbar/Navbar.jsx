@@ -1,7 +1,8 @@
 import cla from "./Navbar.module.css"
 import {NavLink} from 'react-router-dom'
-import Friends from '../Friends/Friends'
-const Navbar = () => {
+import Friend from '../Friends/Friend/Friend'
+const Navbar = (props) => {
+  let friendsElements = props.state.dialogs.map(d => <Friend name={d.userName} src={d.ava} />)
     return(
         <nav className={cla.nav}>
         <div className={cla.item}>
@@ -20,7 +21,10 @@ const Navbar = () => {
           <NavLink to='/settings' activeClassName={cla.activeLink}>Settings</NavLink>
         </div>
         <div className={cla.item}>
-          <Friends />
+        <h1>Friends</h1>
+        <div className={cla.container}>
+          {friendsElements}
+          </div>
         </div>
       </nav>
     );
