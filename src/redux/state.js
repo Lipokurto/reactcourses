@@ -5,7 +5,10 @@
       posts: [
       {id:1,message:'Hi, how are you?',likecount:7},
       {id:2,message:"It's my first post!",likecount:3} 
-    ]},
+    ],
+      newPostText : 'PRUVEEEEEEEEEEEEEEET'
+  },
+
     messagePage : {
       message: [
         {Id:1,messageText:'Sam Jepa,pidor!'},
@@ -19,13 +22,19 @@
       ]}
     
   }
-  export let addPost = (postMessage) => {
+  export let addPost = () => {
     let newPost ={
       id:5,
-      message: postMessage,
+      message: state.profilePage.newPostText,
       likecount: 0
     };
     state.profilePage.posts.push(newPost)
     rerenderEntireTree(state)
   }
+  
+  export let updateNewPostText = (newText) => {
+    state.profilePage.newPostText = newText
+    rerenderEntireTree(state)
+  }
+
 export default state;

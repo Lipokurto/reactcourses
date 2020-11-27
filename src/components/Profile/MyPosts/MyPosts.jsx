@@ -8,8 +8,15 @@ let postsElemets = props.postsData.map((p)=><Post message={p.message} likecount=
 let newPostElement = React.createRef();
 
 const addPosts =()=> {
+  props.addPost()
+  props.updateNewPostText('')
+}
+
+let onPostChange =()=> {
+  debugger;
   let text = newPostElement.current.value;
-  props.addPost(text)
+  props.updateNewPostText(text)
+  
 }
 
 return (
@@ -19,7 +26,7 @@ return (
   </div>
     <div className={cla.item}>
         <div>
-          <textarea ref={newPostElement} ></textarea>
+          <textarea onChange={onPostChange} ref={newPostElement} value={props.newPostText}/>
         </div>
         <div>
           <button onClick={addPosts}>Add post</button>
