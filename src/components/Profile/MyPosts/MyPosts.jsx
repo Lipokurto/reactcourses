@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import cla from "./MyPosts.module.css"
 import Post from "./Post/Post"
 
@@ -8,13 +8,13 @@ let postsElemets = props.postsData.map((p)=><Post message={p.message} likecount=
 let newPostElement = React.createRef();
 
 const addPosts =()=> {
-  props.addPost()
-  props.updateNewPostText('')
+  props.dispatch({type:'ADD-POST'})
+  // props.dispatch({type:'UPDATE-NEW-POST-TEXT'})
 }
 
 let onPostChange =()=> {
   let text = newPostElement.current.value;
-  props.updateNewPostText(text)
+  props.dispatch({type:'UPDATE-NEW-POST-TEXT', text:text})
   
 }
 
