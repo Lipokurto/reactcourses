@@ -1,7 +1,7 @@
-const ADD_POST = 'ADD-POST'
-const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
-const UPDATE_NEW_MESSAGE_BODY = 'UPDATE-NEW-MESSAGE-BODY'
-const SEND_MESSAGE = 'SEND-MESSAGE'
+import messageReducer from "./message-reducer"
+import profileReducer from "./profile-reducer"
+import sidebarReducer from "./sidebar-reducer"
+
 
 let store = {
     _state : {
@@ -13,7 +13,7 @@ let store = {
       ],
         newPostText : 'Мой новый пост'
     },
-    messagePage : {
+      messagePage : {
         dialogs : [
           {userId:1,userName:'Bassist',ava:'https://f1.upet.com/A_r2u6uZhnxA_x.jpg'},
           {userId:2,userName:'Jepa',ava:'https://kartinki-dlya-srisovki.ru/wp-content/uploads/2018/10/klevye-kartinki-dlya-srisovki-2.png'},
@@ -39,54 +39,16 @@ let store = {
       },
 
     dispatch(action){
-      if(action.type === ADD_POST) {
-        let newPost ={
-          id:5,
-          message: this._state.profilePage.newPostText,
-          likecount: 0
-        };
-        this._state.profilePage.posts.push(newPost)
-        this._callSubscriber(this._state)
-
-      } else if (action.type === UPDATE_NEW_POST_TEXT) {
-        this._state.profilePage.newPostText = action.text
-        this._callSubscriber(this._state)
-
-      } else if (action.type === UPDATE_NEW_MESSAGE_BODY){
-        this._state.messagePage.newMessageBody = action.body
-        this._callSubscriber(this._state)
-
-      } else if (action.type === SEND_MESSAGE) {
-        let body = this._state.messagePage.newMessageBody
-        this._state.messagePage.newMessageBody = ''
-        this._state.messagePage.message.push({Id:4,messageText:body})
-        this._callSubscriber(this._state)
-      }
+      this._state.profilePage = profileReducer(this._state.profilePage, action)
+      this._state.messagePage = messageReducer(this._state.messagePage, action)
+      this._state.sidebar = sidebarReducer(this._state.sidebar, action)
+      this._callSubscriber(this._state)
     }
   }
   
-  export const addPostActionCreator =()=> {
-    return {
-      type: ADD_POST
-    }
-  }
+
   
-  export const updateNewPostTextActionCreator =(text)=> {
-    return {
-      type: UPDATE_NEW_POST_TEXT, text:text
-    }
-  }
-  
-  export const sendMessageCreator =()=> {
-    return {
-      type: SEND_MESSAGE
-    }
-  }
-  export const updateNewMessageBodyCreator =(body)=> {
-    return {
-      type: UPDATE_NEW_MESSAGE_BODY, body:body
-    }
-  }
+
 export default store;
 window.store = store;
   
