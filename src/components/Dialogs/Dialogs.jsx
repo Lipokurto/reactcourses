@@ -1,28 +1,24 @@
-import React, { Component } from 'react';
+import React from 'react';
 import cla from './Dialogs.module.css'
 import Message from './Dialog/Messages/Message'
 import Friend from '../Friends/Friend/Friend'
-import { sendMessageCreator, updateNewMessageBodyCreator } from '../../redux/message-reducer';
+// import { sendMessageCreator, updateNewMessageBodyCreator } from '../../redux/message-reducer';
 
 const Dialogs =(props)=> {
-        let state = props.store.getState().messagePage
+        let state = props.messagePage
+
         let messagesElements = state.message.map( m => <Message messageText={m.messageText}/>);
         let friendsElements = state.dialogs.map(d => <Friend name={d.userName} src={d.ava} />)
         let newMessageBody = state.newMessageBody
-        let newMessage = React.createRef();
-
-        const sendMessage =() => {
-            let text = newMessage.current.value;
-            alert(text)
-        }
+        debugger;
         let onSendMessageClick =()=> {
-            props.store.dispatch(sendMessageCreator())
+            props.sendMessage()
         }
         let onNewMessageChange =(e)=> {
             let body = e.target.value
-            props.store.dispatch(updateNewMessageBodyCreator(body))
+            props.updateNewMessageBody(body)
+
         }
-        debugger;
     return(
         <div className={cla.dialogs}>
             <div className={cla.dialogsItems}>
