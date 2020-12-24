@@ -4,18 +4,19 @@ import Message from './Dialog/Messages/Message'
 import Friend from '../Friends/Friend/Friend'
 import { sendMessageCreator, updateNewMessageBodyCreator } from '../../redux/message-reducer';
 import Dialogs from './Dialogs';
+import { connect } from 'react-redux';
 
-const DialogsContainer =(props)=> {
-        let state = props.store.getState().messagePage
-
-        let onSendMessageClick =()=> {
-            props.store.dispatch(sendMessageCreator())
-        }
-        let onNewMessageChange =(body)=> {
-            props.store.dispatch(updateNewMessageBodyCreator(body))
-        }
-    return(
-        <Dialogs updateNewMessageBody={onNewMessageChange} sendMessage={onSendMessageClick} messagePage={state}/>
-        );
+let mapStateToProps =(state)=> {
+    return {
+        messagePage: state.messagePage
+    }
 }
+let mapDispatchToProps =(dispatch)=> {
+    return {
+        updateNewMessageBody: ()=> {dispatch(sendMessageCreator())},
+        sendMessage: (body)=> {dispatch(updateNewMessageBodyCreator(body))}
+    }
+}
+const DialogsContainer = connect(mapStateToProps,mapDispatchToProps)(Dialogs) 
+
 export default DialogsContainer;
