@@ -6,7 +6,7 @@ import MyPosts from './MyPosts';
 let mpStateToprops =(state)=> {
   return {
     posts: state.profilePage.posts,
-    postsData: state.profilePage.newPostText
+    newPostText: state.profilePage.newPostText
   }
 }
 let mapDispatchToProps=(dispatch)=> {
