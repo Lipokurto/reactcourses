@@ -3,6 +3,7 @@ const UNFOLLOW = 'UNFALLOW'
 const SET_USERS = 'SET_USERS'
 
 let initialState = {
+     
     users: [
  
      ]
