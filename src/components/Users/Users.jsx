@@ -1,45 +1,46 @@
-import react from 'react'
 import cla from './Users.module.css'
-import * as axios from 'axios'
 import userPhoto from '../../img/user-1.png'
 
-const Users =(props)=> {
-    let getUsers  =()=> 
-    {
-        if (props.users.length === 0) {
-            axios.get("https://social-network.samuraijs.com/api/1.0/users").then(response => { 
-                props.setUsers(response.data.items)
-            })
+let  Users =(props)=> {
+
+        let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
+        let pages = []
+        for (let i = 1; i <= pagesCount; i++) {
+            pages.push(i)
         }
-}
-    return (
-        <div>
-            <button onClick={getUsers}>Get Users</button>
-            {
-                props.users.map(u => <div key ={u.id}>
-                    <span>
-                        <div>
-                            <img src={u.photos.small != null ? u.photos.small : userPhoto} className={cla.usersPhoto}/>
-                        </div>
-                        </span>
-                        <div>
-                                { u.followed 
-                                    ? <button onClick={() => (props.unfollow(u.id))}>Unfollow</button> 
-                                    : <button onClick={() => (props.follow(u.id))}>Follow</button> }
-                        </div>
-                    <span>
-                        <span>
-                            <div>{u.name}</div>
-                            <div>{u.status}</div>
-                        </span>
-                        <span>
-                            <div>{'u.location.country'}</div>
-                            <div>{'u.location.city'}</div>
-                        </span>
+    return <div>
+            <div>
+                {pages.map(p =>{
+                    return <span className={props.currentPage === p && cla.selectedPage} 
+                    onClick={(e)=>{props.onPageChanged(p)}}>{p}</span>
+                })}
+            </div>
+        {
+            props.users.map(u => <div key ={u.id}>
+                <span>
+                    <div>
+                        <img src={u.photos.small != null ? u.photos.small : userPhoto} className={cla.usersPhoto}/>
+                    </div>
                     </span>
-                </div>)
-            }
-        </div>
-        )
-}
-export default Users;
+                    <div>
+                            { u.followed 
+                                ? <button onClick={() => (props.unfollow(u.id))}>Unfollow</button> 
+                                : <button onClick={() => (props.follow(u.id))}>Follow</button> }
+                    </div>
+                <span>
+                    <span>
+                        <div>{u.name}</div>
+                        <div>{u.status}</div>
+                    </span>
+                    <span>
+                        <div>{'u.location.country'}</div>
+                        <div>{'u.location.city'}</div>
+                    </span>
+                </span>
+            </div>)
+        }
+    </div>
+        
+    }
+
+export default Users
