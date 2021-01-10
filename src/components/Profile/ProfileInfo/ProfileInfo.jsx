@@ -1,3 +1,4 @@
+import Preloader from '../../../common/preloader/Preloader';
 import cla from './ProfileInfo.module.css'
 
 const MainImg =(props)=> {
@@ -12,17 +13,20 @@ const AvaDis =(props)=>{
     return(
         <div className={cla.mainPro}>
             <div className={cla.ava}>
-                <img alt='' src='https://guilds.gw2w2w.com/guilds/the-pug-smugglers/256.svg' />
+                <img alt='' src={props.src} />
             </div>
             <div className={cla.discr}>Jepa</div>
     </div>
     );
 }
 const ProfileInfo =(props)=> {
+    if(!props.profile) {
+        return <Preloader />
+    }
     return (
         <div className='mainPro'>
             <MainImg />
-            <AvaDis />
+            <AvaDis src={props.profile.photos.large}/>
         </div>
     );
 } 
