@@ -1,10 +1,7 @@
-import React, { Component } from 'react';
-import cla from './Dialogs.module.css'
-import Message from './Dialog/Messages/Message'
-import Friend from '../Friends/Friend/Friend'
 import { sendMessageCreator, updateNewMessageBodyCreator } from '../../redux/message-reducer';
 import Dialogs from './Dialogs';
 import { connect } from 'react-redux';
+import { withAuthRedirect } from '../../hoc/withAuthRedirect';
 
 let mapStateToProps =(state)=> {
     return {
@@ -17,6 +14,8 @@ let mapDispatchToProps =(dispatch)=> {
         updateNewMessageBody: (body)=> {dispatch(updateNewMessageBodyCreator(body))}
     }
 }
-const DialogsContainer = connect(mapStateToProps,mapDispatchToProps)(Dialogs) 
+
+let AuthRedirectComponent = withAuthRedirect(Dialogs)
+const DialogsContainer = connect(mapStateToProps,mapDispatchToProps)(AuthRedirectComponent) 
 
 export default DialogsContainer;

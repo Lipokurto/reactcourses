@@ -1,6 +1,5 @@
 import cla from "./Navbar.module.css"
 import {NavLink} from 'react-router-dom'
-import Friend from '../Friends/Friend/Friend'
 const Navbar = (props) => {
   // let friendsElements = props.state.dialogs.map(d => <Friend name={d.userName} src={d.ava} />)
     return(

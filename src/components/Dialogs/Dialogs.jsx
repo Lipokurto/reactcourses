@@ -2,7 +2,7 @@ import React from 'react';
 import cla from './Dialogs.module.css'
 import Message from './Dialog/Messages/Message'
 import Friend from '../Friends/Friend/Friend'
-// import { sendMessageCreator, updateNewMessageBodyCreator } from '../../redux/message-reducer';
+import { Redirect } from 'react-router-dom';
 
 const Dialogs =(props)=> {
         let state = props.messagePage
@@ -16,7 +16,6 @@ const Dialogs =(props)=> {
         let onNewMessageChange =(e)=> {
             let body = e.target.value
             props.updateNewMessageBody(body)
-
         }
     return(
         <div className={cla.dialogs}>
@@ -43,4 +42,6 @@ const Dialogs =(props)=> {
         </div>
         );
 }
+
+
 export default Dialogs;

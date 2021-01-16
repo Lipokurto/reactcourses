@@ -4,6 +4,8 @@ import { follow, unfollow, setCurrentPage,getUsers} from '../../redux/users-redu
 import Users from './Users'
 import Preloader from '../../common/preloader/Preloader'
 import { usersApi } from '../../api/api';
+import { withAuthRedirect } from '../../hoc/withAuthRedirect';
+import { withRouter } from 'react-router-dom';
 
 
 class UsersContainer extends React.Component {
@@ -32,6 +34,7 @@ class UsersContainer extends React.Component {
             }
 }
 
+
 let mapStateToProps =(state)=> {
     return {
         users: state.usersPage.users,
@@ -43,9 +46,9 @@ let mapStateToProps =(state)=> {
     }
 }
 
-export default connect(mapStateToProps,{
+export default withAuthRedirect(connect(mapStateToProps,{
     follow,
     unfollow,
     setCurrentPage,
     getUsers:getUsers
-    })(UsersContainer)
+    })(UsersContainer))
